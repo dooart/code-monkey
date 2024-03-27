@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import BlinkingCursor from "./blinking-cursor";
 import { Markdown } from "./markdown";
 import Message from "./message";
 
 export default function SoulMessage({ content }: { content: string | AsyncIterable<string> }) {
-  const message = useContentWithStreaming(content);
+  const { message } = useContentWithStreaming(content);
 
   return (
-    <Message name="Code Monkey" imageSrc="/code-monkey.webp">
-      {message.length ? <Markdown>{message}</Markdown> : <span className="text-muted-foreground">Thinking...</span>}
+    <Message name="Code Monkey" avatarUrl="/code-monkey.webp">
+      {message.length ? <Markdown>{message}</Markdown> : <BlinkingCursor />}
     </Message>
   );
 }
@@ -15,6 +16,7 @@ export default function SoulMessage({ content }: { content: string | AsyncIterab
 function useContentWithStreaming(content: string | AsyncIterable<string>) {
   const isStream = typeof content !== "string";
   const [message, setMessage] = useState(isStream ? "" : content);
+  const [doneStreaming, setDoneStreaming] = useState(isStream ? false : true);
 
   useEffect(() => {
     const readStream = async () => {
@@ -25,10 +27,12 @@ function useContentWithStreaming(content: string | AsyncIterable<string>) {
           setMessage((prev) => prev + delta);
         }
       }
+
+      setDoneStreaming(true);
     };
 
     readStream();
   }, [content, isStream]);
 
-  return message;
+  return { message, doneStreaming };
 }
