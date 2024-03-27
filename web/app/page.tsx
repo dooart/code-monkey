@@ -62,9 +62,7 @@ export default function Page() {
     <div className="py-6">
       <div className="mb-10 flex justify-between">
         <div>
-          <h1 className="h-10 text-2xl font-heading sm:text-3xl tracking-tighter">
-            <code>Code Monkey</code>
-          </h1>
+          <h1 className="h-10 text-2xl font-heading sm:text-3xl tracking-tighter">Code Monkey</h1>
           <h2>
             <code> helps you write CODE!</code>
           </h2>
