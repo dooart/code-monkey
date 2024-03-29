@@ -18,7 +18,6 @@
   "dependencies": {
     "@opensouls/engine": "^0.0.20",
     "chokidar": "^3.6.0",
-    "socialagi": "^0.1.10",
     "uuid": "^9.0.1"
   }
 }

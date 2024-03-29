@@ -1,5 +1,7 @@
-import { MentalProcess, WorkingMemory, indentNicely, useActions } from "@opensouls/engine";
-import { decision, externalDialog, internalMonologue, mentalQuery } from "./lib/defaultCognitiveSteps.js";
+import { MentalProcess, WorkingMemory, indentNicely, mentalQuery, useActions } from "@opensouls/engine";
+import decision from "./lib/decision.js";
+import externalDialog from "./lib/externalDialog.js";
+import internalMonologue from "./lib/internalMonologue.js";
 
 const initialProcess: MentalProcess = async ({ workingMemory }) => {
   const { speak, log } = useActions();
@@ -17,7 +19,7 @@ const initialProcess: MentalProcess = async ({ workingMemory }) => {
     memory,
     {
       description: "What is the intent of the user with their latest message?",
-      choices: [code, question, chat],
+      choices: [code, info, question, chat],
     },
     { model: "quality" }
   );
