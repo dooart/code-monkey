@@ -16,8 +16,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@opensouls/engine": "^0.0.20",
-    "chokidar": "^3.6.0",
-    "uuid": "^9.0.1"
+    "@opensouls/engine": "^0.1.11"
   }
 }
